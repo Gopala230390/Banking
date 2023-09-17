@@ -14,11 +14,11 @@ pipeline {
    stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
-        git branch: 'main', url: 'https://github.com/cbabu85/Banking-finance-project.git'
+        git branch: 'main', url: 'https://github.com/cbabu85/Banking.git'
             }
     }
     
-/*    stage('Package the Application') {
+    stage('Package the Application') {
       steps {
         echo " Packaing the Application"
         sh 'mvn clean package'
@@ -27,13 +27,13 @@ pipeline {
     
     stage('Publish Reports using HTML') {
       steps {
-      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Banking-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Banking/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
     }
     
     stage('Docker Image Creation') {
       steps {
-        sh 'docker build -t cbabu85/bankingfinance:3.0 .'
+        sh 'docker build -t cbabu85/bankingfinance:4.0 .'
             }
     }
     stage('DockerLogin') {
@@ -46,9 +46,9 @@ pipeline {
   
     stage('Push Image to DockerHub') {
       steps {
-        sh 'docker push cbabu85/bankingfinance:3.0'
+        sh 'docker push cbabu85/bankingfinance:4.0'
             }
-    } */
+    } 
         stage ('Configure Test-server with Terraform, Ansible and then Deploying'){
             steps {
                 dir('my-serverfiles'){
