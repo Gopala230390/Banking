@@ -66,3 +66,10 @@ pipeline {
                }*/
      }
 } 
+ post{
+        success{
+            slackSend( channel: "#27-apr-devops", token: "slack-authn", color: "good", message: "Test Email")
+        }
+    }
+}
+  
