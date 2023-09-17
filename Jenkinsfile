@@ -31,7 +31,7 @@ pipeline {
             }
     }
     
-    stage('Docker Image Creation') {
+/*    stage('Docker Image Creation') {
       steps {
         sh 'docker build -t cbabu85/bankingfinance:4.0 .'
             }
@@ -59,10 +59,10 @@ pipeline {
                 }
             }
         }
-/*        stage ('Deploy into test-server using Ansible') {
+        stage ('Deploy into test-server using Ansible') {
            steps {
              ansiblePlaybook credentialsId: 'BabucKeypair', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory', playbook: 'finance-playbook.yml'
            }
                }*/
      }
-}
+} 
