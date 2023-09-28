@@ -37,7 +37,7 @@ pipeline {
   
    stage('Create Docker image of App') {
        steps {
-         sh 'docker build -t gopala230390/bank:4.0'
+         sh 'docker build -t gopala230390/bank:4.0 .'
              }
          }
 
