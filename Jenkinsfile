@@ -14,7 +14,7 @@ pipeline {
    stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
-        git branch: 'main', url: 'https://github.com/cbabu85/Banking.git'
+        git branch: 'main', url: 'https://github.com/Gopala230390/Banking.git'
             }
     }
     
@@ -31,7 +31,7 @@ pipeline {
             }
     }
     
-/*    stage('Docker Image Creation') {
+   stage('Docker Image Creation') {
       steps {
         sh 'docker build -t cbabu85/bankingfinance:4.0 .'
             }
@@ -63,7 +63,7 @@ pipeline {
            steps {
              ansiblePlaybook credentialsId: 'BabucKeypair', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory', playbook: 'finance-playbook.yml'
            }
-               }*/
+               }
      }
  post{
         success{
