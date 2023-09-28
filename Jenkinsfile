@@ -10,7 +10,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY') 
   } 
   
-  /* stages {
+   stages {
    stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
@@ -31,26 +31,6 @@ pipeline {
             }
     }
     
-   stage('Create Docker image of App') {
-       steps {
-         sh 'docker build -t gopala230390/insurance:4.0 .'
-             }
-         }
-
-    stage('Docker Image Push') {
-       steps {
-       withCredentials([usernamePassword(credentialsId: 'dockerpass', passwordVariable: 'dockerpass', usernameVariable: 'dockerhub')]) {
-         sh 'docker login -u ${dockerhub} -p ${dockerpass}'
-       }
-         sh 'docker push gopala230390/insurance:4.0'
-   }    
-     }   
-  
-    stage('Push Image to DockerHub') {
-      steps {
-        sh 'docker push gopala230390/insurance:4.0'
-            }
-    } */
         stage ('Configure Test-server with Terraform, Ansible and then Deploying'){
             steps {
                 dir('my-serverfiles'){
