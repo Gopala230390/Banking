@@ -10,7 +10,7 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY') 
   } 
   
-  stages {
+  /* stages {
    stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
@@ -50,7 +50,7 @@ pipeline {
       steps {
         sh 'docker push gopala230390/insurance:4.0'
             }
-    } 
+    } */
         stage ('Configure Test-server with Terraform, Ansible and then Deploying'){
             steps {
                 dir('my-serverfiles'){
