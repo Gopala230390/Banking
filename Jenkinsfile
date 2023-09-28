@@ -10,27 +10,7 @@ pipeline {
     
     }
 
-  
-   stage('Create Docker image of App') {
-       steps {
-         sh 'docker build -t gopala230390/bank:4.0'
-             }
-         }
 
-    stage('Docker Image Push') {
-       steps {
-       withCredentials([usernamePassword(credentialsId: 'dockerpass', passwordVariable: 'dockerpass', usernameVariable: 'dockerhub')]) {
-         sh 'docker login -u ${dockerhub} -p ${dockerpass}'
-       }
-         sh 'docker push gopala230390/bank:4.0'
-   }    
-     }   
-  
-    stage('Push Image to DockerHub') {
-      steps {
-        sh 'docker push gopala230390/bank:4.0'
-            }
-    } 
  
   
    stages {
@@ -53,7 +33,30 @@ pipeline {
       publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/banking/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
     }
-    
+
+  
+   stage('Create Docker image of App') {
+       steps {
+         sh 'docker build -t gopala230390/bank:4.0'
+             }
+         }
+
+    stage('Docker Image Push') {
+       steps {
+       withCredentials([usernamePassword(credentialsId: 'dockerpass', passwordVariable: 'dockerpass', usernameVariable: 'dockerhub')]) {
+         sh 'docker login -u ${dockerhub} -p ${dockerpass}'
+       }
+         sh 'docker push gopala230390/bank:4.0'
+   }    
+     }   
+  
+    stage('Push Image to DockerHub') {
+      steps {
+        sh 'docker push gopala230390/bank:4.0'
+            }
+    } 
+
+     
         stage ('Configure Test-server with Terraform, Ansible and then Deploying'){
             steps {
                 dir('my-serverfiles'){
