@@ -31,18 +31,20 @@ pipeline {
             }
     }
     
-   stage('Docker Image Creation') {
-      steps {
-        sh 'docker build -t cbabu85/bankingfinance:4.0 .'
-            }
-    }
-    stage('DockerLogin') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'Docker-Login', passwordVariable: 'docker_password', usernameVariable: 'docker_login')]) {
-        sh "docker login -u ${docker_login} -p ${docker_password}"
-            }
-        }
-    } 
+   stage('Create Docker image of App') {
+       steps {
+         sh 'docker build -t gopala230390/insurance:4.0 .'
+             }
+         }
+
+    stage('Docker Image Push') {
+       steps {
+       withCredentials([usernamePassword(credentialsId: 'dockerpass', passwordVariable: 'dockerpass', usernameVariable: 'dockerhub')]) {
+         sh 'docker login -u ${dockerhub} -p ${dockerpass}'
+       }
+         sh 'docker push gopala230390/insurance:4.0'
+   }    
+     }   
   
     stage('Push Image to DockerHub') {
       steps {
@@ -65,10 +67,6 @@ pipeline {
            }
                }
      }
- post{
-        success{
-            slackSend( channel: "#27-apr-devops", token: "slack-authn", color: "good", message: "Test Email")
-        }
-    }
+ 
 }
   
