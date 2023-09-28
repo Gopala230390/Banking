@@ -1,7 +1,5 @@
 resource "aws_instance" "test-server" {
   ami           = "ami-053b0d53c279acc90" 
-  access_key = "AKIAZTHNJIIF4MLQY2RD"
-  secret_key = "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"
   instance_type = "t2.micro" 
   key_name = "AWS-EC2-Key"
   connection {
