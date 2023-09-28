@@ -54,7 +54,7 @@ pipeline {
         stage ('Configure Test-server with Terraform, Ansible and then Deploying'){
             steps {
                 dir('my-serverfiles'){
-                sh 'sudo chmod 600 BabucKeypair.pem'
+                sh 'sudo chmod 600 AWS-EC2-Key.pem'
                 sh 'terraform init'
                 sh 'terraform validate'
                 sh 'terraform apply --auto-approve'
