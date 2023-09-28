@@ -67,11 +67,7 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy into test-server using Ansible') {
-           steps {
-             ansiblePlaybook credentialsId: 'AWS-EC2-Key.pem', disableHostKeyChecking: true, installation: 'ansible', inventory: 'inventory', playbook: 'finance-playbook.yml'
-           }
-               }
+     
      }
  
 }
