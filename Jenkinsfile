@@ -9,6 +9,28 @@ pipeline {
     maven 'M2_HOME'
     
     }
+
+  
+   stage('Create Docker image of App') {
+       steps {
+         sh 'docker build -t gopala230390/bank:4.0'
+             }
+         }
+
+    stage('Docker Image Push') {
+       steps {
+       withCredentials([usernamePassword(credentialsId: 'dockerpass', passwordVariable: 'dockerpass', usernameVariable: 'dockerhub')]) {
+         sh 'docker login -u ${dockerhub} -p ${dockerpass}'
+       }
+         sh 'docker push gopala230390/bank:4.0'
+   }    
+     }   
+  
+    stage('Push Image to DockerHub') {
+      steps {
+        sh 'docker push gopala230390/bank:4.0'
+            }
+    } 
  
   
    stages {
