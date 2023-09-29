@@ -1,0 +1,42 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class SeleniumTest {
+    public static void main(String[] args) {
+        // Set the path to your ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+
+        // Create a ChromeDriver instance
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized"); // Maximize the browser window
+        WebDriver driver = new ChromeDriver(options);
+
+        try {
+            // Open a web page
+            driver.get("https://www.example.com");
+
+            // Perform actions on the web page
+            WebElement searchBox = driver.findElement(By.name("q"));
+            searchBox.sendKeys("Selenium Testing");
+            searchBox.submit();
+
+            // Wait for a few seconds to see the results
+            Thread.sleep(5000);
+
+            // Verify if the search results page title contains "Selenium Testing"
+            if (driver.getTitle().contains("Selenium Testing")) {
+                System.out.println("Test Passed: Page title contains 'Selenium Testing'");
+            } else {
+                System.out.println("Test Failed: Page title does not contain 'Selenium Testing'");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close the browser
+            driver.quit();
+        }
+    }
+}
